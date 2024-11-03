@@ -11,7 +11,7 @@ import 'info_provider.dart';
 
 
 
-
+//https://www.figma.com/design/EyeR36Ukm0sUqAbzhkn4Go/heaven-vally-(Copy)?node-id=2102-2&t=0CkqmNy6sefqxsNZ-1
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
