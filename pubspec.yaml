@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.1
+  sdk: '>=3.4.1 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -43,7 +43,8 @@ dependencies:
   video_player_win: ^3.1.0
   video_player: ^2.9.2
   virtual_keyboard_multi_language: ^1.1.2
-  excel: ^4.0.6
+  csv: ^6.0.0
+  path_provider: ^2.1.5
 
 
   # The following adds the Cupertino Icons font to your application.

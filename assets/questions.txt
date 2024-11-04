@@ -1,0 +1,3 @@
+question1:answer1,answer2,answer3,answer4->answer1
+question2:answer1,answer2,answer3,answer4->answer2
+question3:answer1,answer2,answer3,answer4->answer3

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:nice_game/navigation.dart';
+import 'package:nice_game/question_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:window_manager/window_manager.dart';
@@ -37,8 +38,8 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_)async{
       await windowManager.ensureInitialized();
-      await WindowManager.instance.setFullScreen(true);
-      // await WindowManager.instance.setSize(Size(1080/2.5,1920/2.5));
+      // await WindowManager.instance.setFullScreen(true);
+      await WindowManager.instance.setSize(Size(1080/2.5,1920/2.5));
       await windowManager.setAsFrameless();
       navPARU(HomePage());
     });
@@ -48,6 +49,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => InfoProvider()),
+          ChangeNotifierProvider(create: (context) => QuestionProvider()),
         ],
         child: LayoutBuilder(
             builder: (context,a) {
@@ -87,5 +89,28 @@ class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  }
+}
+
+class BackButtonWidget extends StatelessWidget {
+  const BackButtonWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: (){
+        navPop();
+      },
+      child: Container(
+        width: 60,
+        height:60,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          shape: BoxShape.circle,
+        ),
+        padding: EdgeInsets.all(2.w),
+        child: Icon(Icons.close,color: Colors.white,size: 30,),
+      ),
+    );
   }
 }

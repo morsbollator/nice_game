@@ -1,26 +1,25 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nice_game/info_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:nice_game/navigation.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
 
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class GameOverPage extends StatefulWidget {
+  const GameOverPage({super.key, required this.path});
+  final String path;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<GameOverPage> createState() => _GameOverPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _GameOverPageState extends State<GameOverPage> {
   late VideoPlayerController controller;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller = VideoPlayerController.file(File('C:\\start.mp4'));
+    controller = VideoPlayerController.file(File(widget.path));
 
     // controller.setLooping(true);
     controller.initialize().then((value) {
@@ -34,9 +33,7 @@ class _HomePageState extends State<HomePage> {
         controller.addListener((){
           if(controller.value.duration.inMilliseconds<=controller.value.position.inMilliseconds){
             controller.pause();
-            controller.seekTo(Duration(milliseconds: 1,seconds: 0)).then((val){
-              controller.play();
-            });
+            navPU();
 
           }
         });
@@ -54,15 +51,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: InkWell(
-        onTap: (){
-          Provider.of<InfoProvider>(context,listen: false).goToGenderPage();
-        },
-        child: Container(
-          width: 100.w,
-          height: 100.h,
-          child: controller.value.isInitialized?VideoPlayer(controller):SizedBox(),
-        ),
+      body: Container(
+        width: 100.w,
+        height: 100.h,
+        child: controller.value.isInitialized?VideoPlayer(controller):SizedBox(),
       ),
     );
   }
