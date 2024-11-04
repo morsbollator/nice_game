@@ -38,8 +38,8 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_)async{
       await windowManager.ensureInitialized();
-      // await WindowManager.instance.setFullScreen(true);
-      await WindowManager.instance.setSize(Size(1080/2.5,1920/2.5));
+      await WindowManager.instance.setFullScreen(true);
+      // await WindowManager.instance.setSize(Size(1080/2.5,1920/2.5));
       await windowManager.setAsFrameless();
       navPARU(HomePage());
     });
